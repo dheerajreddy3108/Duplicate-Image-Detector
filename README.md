@@ -40,6 +40,8 @@ Next a function to give gray scale images with gaussian blur applied to each ima
 
 ![Capture5](https://user-images.githubusercontent.com/55786239/139813066-a7763f7b-334a-4166-8012-ede4936e8ca1.PNG)
 
+### Function to calculate minimum contour areas ###
+
 Then a function to calculate the contour areas for all the contours in the image that have an area of more than 10.
 I applied AdaptiveThreshold method before extracting contours from the image.
 
@@ -48,10 +50,22 @@ I applied AdaptiveThreshold method before extracting contours from the image.
 I have done experiments with different values to eliminate small contours in the image and considered value of 10.
 From the statistics it is clear that more than 40% of the areas are smaller or equal to value of 10.
 
-![Capture11](https://user-images.githubusercontent.com/55786239/139813582-b74627e7-1edb-4d5b-3e1-66edd1ddd306.PNG)
+![Capture11](https://user-images.githubusercontent.com/55786239/139814249-537b4e33-cd78-4f25-80c8-0e2b89f616b5.PNG)
 
-### Function to calculate minimum contour areas ###
 
-As we are considering minimum contour areas, it is important to calculate them before we start comparing two images. This is because consider an example where we have 5 images in the directory. 
-If we are comparing these 5 images, if we don’t calculate the contour areas before then we must calculate the same contours again and again which is computational burden, and this slows down the program. 
+The final step is to take the predefined function and compare two images. To compare a single image to all other images it is also important to check if we are comparing same images more than once. So, it has been checked and no two images are compared more than once. Also, same image is not compared. 
 
+![Capture7](https://user-images.githubusercontent.com/55786239/139814742-ce9c73cf-e1c4-46f7-9046-b5a74486fe6a.PNG)
+
+Outer for loop is used to take the first image into consideration. The inner loop takes all the images other than the image taken in the outer loop. Here we name the first image as prev_frame along with the file name. Then we take the minimum contour areas we calculated beforehand. We take the average of two values. If the two images are the same, then the two images will have the same contour area and the score from the function compare_frames_change_detection will be zero. If the two images are different the score will be greater than 0. The more the two images are different the higher the score will be. We increase the value of the variable called count by 1 and then the prev_frame_name is appended into the duplicate_images_list.
+
+If there are any duplicate images in the directory all the file names are in the list, and we remove the duplicate images in the directory.
+
+![Capture9](https://user-images.githubusercontent.com/55786239/139814886-261af741-f122-42fd-a403-3529591c4b6a.PNG)
+
+
+## Testing the Program ##
+
+I have manually copied few images to a new directory and renamed the duplicate images. I have ran the program with that data directory and by considering all the images in the data directory. The program was 100 % able to detect all the duplicate images and the duplicate images are appended into the list. The results are attached in the image below.
+
+![Capture12](https://user-images.githubusercontent.com/55786239/139815378-fb3769e0-00e3-4b8d-b029-cf7850ea46fe.PNG)

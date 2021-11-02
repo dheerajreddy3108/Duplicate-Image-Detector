@@ -6,15 +6,15 @@ The task given to me is to eliminate duplicate images in the given data set. It 
 Detecting similar images using a manual approach is hard and more time-consuming. It is also prone to human errors. In many cases, humans introduce bias as well. So, manual inspection of the dataset is to be avoided. 
 To do this, we need to perform operations based on the image contours area. The code is formatted in the way explained below.
 
-Importing Libraries
+i.Importing Libraries
 
-Defining functions to perform preprocessing steps on Images
+ii.Defining functions to perform preprocessing steps on Images
 
-Helper Functions
+iii.Helper Functions
 
-Function to calculate minimum contour areas 
+iv.Function to calculate minimum contour areas 
 
-Loop to compare 2 images iteratively to remove if any duplicates are there in the directory.
+v.Loop to compare 2 images iteratively to remove if any duplicates are there in the directory.
 
 ### Importing Libraries ###
 
@@ -42,8 +42,8 @@ Next a function to give gray scale images with gaussian blur applied to each ima
 
 ### Function to calculate minimum contour areas ###
 
-Then a function to calculate the contour areas for all the contours in the image that have an area of more than 10.
-I applied AdaptiveThreshold method before extracting contours from the image.
+To calculate contours I have applied AdaptiveThreshold method first to the image. Adaptive Threshold considers a small region of neighbouring picels to compute threshold value for the local region of an image. This helps us to avoid the issue of manually setting up the range of values for thresholding.
+A loop is taken to calculate areas for all the contours in the image that have an area of more than 10.
 
 ![Capture4](https://user-images.githubusercontent.com/55786239/139813328-1b714b1a-a442-445c-a340-b6a137684a27.PNG)
 
